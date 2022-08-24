@@ -1,8 +1,7 @@
-import React from "react";
 import Button from "../Button";
 import style from './Form.module.scss';
 
-function Form() {
+export default function Form() {
   return (
     <form className={style.newTask}>
       <div className={style.inputContainer}>
@@ -31,9 +30,9 @@ function Form() {
           required
         />
       </div>
-      <Button/>
+      <Button
+        texto="Add"
+      />
     </form>
   );
 }
-
-export default Form;
