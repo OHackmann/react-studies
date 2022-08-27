@@ -23,7 +23,7 @@ export default function App() {
       tasks={tasks}
       selectTask={selectTask}
       />
-      <Timer/>
+      <Timer select={select}/>
     </div>
   );
 }
