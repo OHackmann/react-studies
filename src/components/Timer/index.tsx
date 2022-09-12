@@ -3,7 +3,7 @@ import Clock from "./Clock";
 import style from "./Timer.module.scss";
 import { timeToSeconds } from "../../common/utils/time";
 import { ITask } from "../../types/task";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
   select: ITask | undefined;
@@ -11,9 +11,12 @@ interface Props {
 
 export default function Timer({ select }: Props) {
   const [time, setTime] = useState<number>();
-  if(select?.time) {
-    setTime(timeToSeconds(select.time));
-  }
+
+  useEffect(() => {
+    if(select?.time) {
+      setTime(timeToSeconds(select.time));
+    }
+  },[select])
   return (
     <div className={style.timer}>
       <p className={style.title}>Choose a card and start the timer</p>
