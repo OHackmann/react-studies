@@ -1,3 +1,4 @@
+
 .item {
   background-color: #4D4D4D;
   border-radius: 8px;
@@ -21,16 +22,16 @@
   }
 }
 
-.selectedItem {
+.itemSelecionado {
   background-color: #292929;
   box-shadow: 2px 4px 4px #0000009F inset;
 }
 
-.itemCompleted {
+.itemCompletado {
   background-color: #566F42;
   cursor: auto;
 
-  .done {
+  .concluido {
     display: block;
     background-image: url('../../../assets/img/check-mark.svg');
     background-repeat: no-repeat;

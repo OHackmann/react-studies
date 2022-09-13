@@ -1,10 +1,10 @@
-.timer {
+.cronometro {
   display: flex;
   flex-direction: column;
   align-items: center;
   grid-area: cronometro;
 
-  .clockWrapper {
+  .relogioWrapper {
     align-items: center;
     background-color: #7687A1;
     border-radius: 10px;
@@ -18,7 +18,7 @@
     width: 100%;
   }
 
-  .title {
+  .titulo {
     font-size: 2rem;
   }
 

@@ -1,31 +1,51 @@
-import { useState } from 'react';
-import Form from '../components/Form';
-import List from '../components/List';
-import Timer from '../components/Timer';
-import { ITask } from '../types/task';
+import React, { useState } from 'react';
+import Cronometro from '../components/Cronometro';
+import Formulario from '../components/Formulario';
+import Lista from '../components/Lista';
+import { ITarefa } from '../types/tarefa';
 import style from './App.module.scss';
 
-export default function App() {
-  const [tasks, setTasks] = useState<ITask[]>([]);
-  const [select, setSelect] = useState<ITask>();
+function App() {
+  const [tarefas, setTarefas] = useState<ITarefa[]>([]);
+  const [selecionado, setSelecionado] = useState<ITarefa>();
 
-  function selectTask(taskSelect: ITask) {
-    setSelect(taskSelect);
-    setTasks(previousTasks => previousTasks.map(task => ({
-      ...task,
-      selected: task.id === taskSelect.id ? true : false
-    })));
+  function selecionaTarefa(tarefaSelecionada: ITarefa) {
+    setSelecionado(tarefaSelecionada);
+    setTarefas(tarefasAnteriores => tarefasAnteriores.map(tarefa => ({
+      ...tarefa,
+      selecionado: tarefa.id === tarefaSelecionada.id ? true : false
+    })))
   }
+
+  function finalizarTarefa() {
+    if(selecionado) {
+      setSelecionado(undefined);
+      setTarefas(tarefasAnteriores => tarefasAnteriores.map(tarefa => {
+        if(tarefa.id === selecionado.id) {
+          return {
+            ...tarefa,
+            selecionado: false,
+            completado: true
+          }
+        }
+        return tarefa;
+      }))
+    }
+  }
+
   return (
     <div className={style.AppStyle}>
-      <Form setTasks={setTasks}/>
-      <List 
-      tasks={tasks}
-      selectTask={selectTask}
+      <Formulario setTarefas={setTarefas} />
+      <Lista
+        tarefas={tarefas}
+        selecionaTarefa={selecionaTarefa}
       />
-      <Timer select={select}/>
+      <Cronometro
+        selecionado={selecionado}
+        finalizarTarefa={finalizarTarefa}
+      />
     </div>
   );
 }
 
-
+export default App;
